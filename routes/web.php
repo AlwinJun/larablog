@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,16 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('post/{slug}', function ($slug) {
-    
-    if(!file_exists($filePath =  __DIR__ . "/../resources/post/{$slug}.html")){
-        abort(404);
-    }
 
-    // cache the filepath content for 20 seconds
-    $post = cache()->remember("post.{$slug}", now()->addSeconds(30) ,fn() => file_get_contents($filePath));
-    
-
-    return view('post',[
-        'post' => $post
+    return view('post', [
+        'post' => Post::find($slug)
     ]);
 });
