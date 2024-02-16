@@ -13,36 +13,11 @@
 
 <body>
     <main>
+        <?php foreach($posts as $post): ?>
         <article>
-            <h2><a href="/post/first-post">My first post</a></h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquid inventore sit sunt magni velit
-                repudiandae excepturi temporibus commodi ratione. Quia numquam architecto voluptatum, quisquam ut eos
-                sed rerum fugit?Debitis, magni tenetur! Dolor praesentium ratione, dicta nulla omnis, ad, in qui earum
-                iste consequuntur assumenda totam officiis. Vel doloribus porro alias nobis eius dolorem fugiat cumque
-                officia quas non.
-            </p>
+            <?= $post ?>
         </article>
-        <article>
-            <h2><a href="/post/second-post">My second post</a></h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquid inventore sit sunt magni velit
-                repudiandae excepturi temporibus commodi ratione. Quia numquam architecto voluptatum, quisquam ut eos
-                sed rerum fugit?Debitis, magni tenetur! Dolor praesentium ratione, dicta nulla omnis, ad, in qui earum
-                iste consequuntur assumenda totam officiis. Vel doloribus porro alias nobis eius dolorem fugiat cumque
-                officia quas non.
-            </p>
-        </article>
-        <article>
-            <h2><a href="/post/third-post">My third post</a></h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquid inventore sit sunt magni velit
-                repudiandae excepturi temporibus commodi ratione. Quia numquam architecto voluptatum, quisquam ut eos
-                sed rerum fugit?Debitis, magni tenetur! Dolor praesentium ratione, dicta nulla omnis, ad, in qui earum
-                iste consequuntur assumenda totam officiis. Vel doloribus porro alias nobis eius dolorem fugiat cumque
-                officia quas non.
-            </p>
-        </article>
+        <?php endforeach; ?>
     </main>
 </body>
 
