@@ -23,34 +23,26 @@ class Post
 
     public static function all()
     {
-        $files = File::files(resource_path("post/"));
+        // collect all the file in resourse/post directory and store it as an array
+        //map for each file and parse them
+        //map it again then pass the metadatas in the Post object
 
-        $post = array_map(function ($file) {
-            $document = YamlFrontMatter::parseFile($file);
-
-            return new Post(
-                $document->title,
-                $document->exerpt,
-                $document->date,
-                $document->slug,
-                $document->body()
+        return collect(File::files(resource_path("post/")))
+            ->map(fn($file) => YamlFrontMatter::parseFile($file))
+            ->map(
+                fn($document) => new Post(
+                    $document->title,
+                    $document->exerpt,
+                    $document->date,
+                    $document->slug,
+                    $document->body()
+                )
             );
 
-        }, $files);
-
-        return $post;
-
-        // return array_map(fn($file) => $file->getContents(), $files);
     }
 
     public static function find($slug)
     {
-        if (!file_exists($filePath = resource_path("post/{$slug}.html"))) {
-            throw new ModelNotFoundException();
-        }
-
-        // cache the filepath content for 20 seconds
-        return cache()->remember("post.{$slug}", now()->addSeconds(30), fn() => file_get_contents($filePath));
-
+        return static::all()->where("slug", $slug)->first();
     }
 }
