@@ -13,16 +13,16 @@
 
 <body>
     <main>
-        <?php foreach($posts as $post): ?>
-        <article>
-            <h2>
-                <a href="post/<?= $post->slug ?>">
-                    <?= $post->title ?>
-                </a>
-            </h2>
-            <p><?= $post->body ?></p>
-        </article>
-        <?php endforeach; ?>
+        @foreach ($posts as $post)
+            <article>
+                <h2>
+                    <a href="post/{{ $post->slug }}">
+                        {{ $post->title }}
+                    </a>
+                </h2>
+                <p>{{ $post->exerpt }}</p>
+            </article>
+        @endforeach
     </main>
 </body>
 
