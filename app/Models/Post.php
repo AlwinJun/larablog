@@ -23,22 +23,24 @@ class Post
 
     public static function all()
     {
-        // collect all the file in resourse/post directory and store it as an array
-        //map for each file and parse them
-        //map it again then pass the metadatas in the Post object
+        return cache()->rememberForever("post.all", function () {
 
-        return collect(File::files(resource_path("post/")))
-            ->map(fn($file) => YamlFrontMatter::parseFile($file))
-            ->map(
-                fn($document) => new Post(
-                    $document->title,
-                    $document->exerpt,
-                    $document->date,
-                    $document->slug,
-                    $document->body()
+            // collect all the file in resourse/post directory and store it as an array
+            //map for each file and parse them
+            //map it again then pass the metadatas in the Post object
+            return collect(File::files(resource_path("post/")))
+                ->map(fn($file) => YamlFrontMatter::parseFile($file))
+                ->map(
+                    fn($document) => new Post(
+                        $document->title,
+                        $document->exerpt,
+                        $document->date,
+                        $document->slug,
+                        $document->body()
+                    )
                 )
-            );
-
+                ->sortByDesc("date");
+        });
     }
 
     public static function find($slug)
