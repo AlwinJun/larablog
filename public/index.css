@@ -1,6 +1,4 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -17,4 +15,8 @@ article + article {
 
 article h2 {
     margin-bottom: 10px;
+}
+
+.category {
+    text-decoration: none;
 }

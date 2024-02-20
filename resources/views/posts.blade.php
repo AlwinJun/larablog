@@ -7,6 +7,7 @@
                         {{ $post->title }}
                     </a>
                 </h2>
+                <a href="#" class="category">#{{ $post->category->name }}</a>
                 <p>{{ $post->exerpt }}</p>
             </article>
         @endforeach
