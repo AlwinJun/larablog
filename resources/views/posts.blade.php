@@ -7,7 +7,12 @@
                         {{ $post->title }}
                     </a>
                 </h2>
-                <a href="/categories/{{ $post->category->slug }}" class="category">#{{ $post->category->name }}</a>
+                <span>
+                    <span>
+                        By <a href="#">{{ $post->user->name }}</a>
+                    </span>
+                    <a href="/categories/{{ $post->category->slug }}" class="category">#{{ $post->category->name }}</a>
+                </span>
                 <p>{{ $post->exerpt }}</p>
             </article>
         @endforeach

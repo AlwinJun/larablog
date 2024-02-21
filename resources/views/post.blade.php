@@ -4,7 +4,12 @@
             <h2>
                 {{ $post->title }}
             </h2>
-            <a href="/categories/{{ $post->category->slug }}" class="category">#{{ $post->category->name }}</a>
+            <span>
+                <span>
+                    By <a href="#">{{ $post->user->name }}</a>
+                </span>
+                <a href="/categories/{{ $post->category->slug }}" class="category">#{{ $post->category->name }}</a>
+            </span>
 
             <div> {!! $post->body !!}</div>
         </article>
