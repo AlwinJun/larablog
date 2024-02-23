@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,9 +19,11 @@ class DatabaseSeeder extends Seeder
         // Post::truncate();
         // Category::truncate();
 
-        User::factory()->create();
-        Post::factory(4)->create();
-        Category::factory()->create();
-
+        Post::factory()
+            ->count(3)
+            ->forAuthor([
+                'name' => 'Jun Alwin'
+            ])
+            ->create();
     }
 }
