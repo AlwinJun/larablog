@@ -18,8 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+    $post = Post::latest();
+    $search = request('search');
+
+    if ($search) {
+        $post->where('title', 'like', "%{$search}%")
+            ->orWhere('exerpt', 'like', "%{$search}%");
+    }
+
     return view('posts', [
-        'posts' => Post::latest()->get(),
+        'posts' => $post->get(),
         'categories' => Category::all()
     ]);
 })->name('home');
