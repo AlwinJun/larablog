@@ -19,11 +19,6 @@ class DatabaseSeeder extends Seeder
         // Post::truncate();
         // Category::truncate();
 
-        Post::factory()
-            ->count(3)
-            ->forAuthor([
-                'name' => 'Jun Alwin'
-            ])
-            ->create();
+        Post::factory()->count(10)->create();
     }
 }
