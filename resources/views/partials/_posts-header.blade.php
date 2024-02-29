@@ -33,7 +33,7 @@
         </div>
 
         <!-- Other Filters -->
-        <div class="relative flex items-center rounded-xl bg-gray-100 lg:inline-flex">
+        {{-- <div class="relative flex items-center rounded-xl bg-gray-100 lg:inline-flex">
             <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
                 <option value="category" disabled selected>Other Filters
                 </option>
@@ -52,7 +52,7 @@
                     </path>
                 </g>
             </svg>
-        </div>
+        </div> --}}
 
         <!-- Search -->
         <div class="relative flex items-center rounded-xl bg-gray-100 px-3 py-2 lg:inline-flex">
