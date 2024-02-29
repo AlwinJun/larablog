@@ -2,7 +2,7 @@
 
 <article
     {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
-    <div class="py-6 px-5">
+    <div class="px-5 py-6">
         <div>
             <img src="/images/illustration-4.png" alt="Blog Post illustration" class="rounded-xl">
         </div>
@@ -18,20 +18,17 @@
                         </h1>
                     </a>
 
-                    <span class="mt-2 block text-gray-400 text-xs">
+                    <span class="mt-2 block text-xs text-gray-400">
                         Published <time>{{ $post->created_at->diffForHumans() }}</time>
                     </span>
                 </div>
             </header>
 
-            <div class="text-sm mt-4">
-                <p>
-                    {{ $post->exerpt }}
-                </p>
-
+            <div class="mt-4 space-y-2 text-sm">
+                {!! $post->exerpt !!}
             </div>
 
-            <footer class="flex justify-between items-center mt-8">
+            <footer class="mt-8 flex items-center justify-between">
                 <div class="flex items-center text-sm">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
@@ -44,7 +41,7 @@
 
                 <div>
                     <a href="/post/{{ $post->slug }}"
-                        class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8">
+                        class="rounded-full bg-gray-200 px-8 py-2 text-xs font-semibold transition-colors duration-300 hover:bg-gray-300">
                         Read More
                     </a>
                 </div>
