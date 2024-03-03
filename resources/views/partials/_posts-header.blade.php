@@ -24,10 +24,9 @@
                 </x-slot:trigger>
 
                 {{-- default slot: items --}}
-                <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
+                <x-dropdown-item href="/" :active="!isset($currentCategory)">All</x-dropdown-item>
                 @foreach ($categories as $category)
-                    @dd(request()->is('/?category=' . $category->slug))
-                    <x-dropdown-item href="/?category={{ $category->slug }}" :active="request()->is('categories/' . $category->slug)">
+                    <x-dropdown-item href="/?category={{ $category->slug }}" :active="$category->is($currentCategory)">
                         {{ ucwords($category->name) }}</x-dropdown-item>
                 @endforeach
             </x-dropdown-category>
