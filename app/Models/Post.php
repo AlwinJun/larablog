@@ -22,8 +22,12 @@ class Post extends Model
         $query->when(
             $filters['search'] ?? false,
             fn($query, $search) =>
-            $query->where('title', 'like', "%{$search}%")
-                ->orWhere('exerpt', 'like', "%{$search}%")
+            $query->where(
+                fn($query) =>
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('exerpt', 'like', "%{$search}%")
+            )
+
         );
 
         $query->when(
