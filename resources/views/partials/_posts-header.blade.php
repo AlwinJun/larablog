@@ -35,10 +35,13 @@
                 </g>
             </svg>
         </div> --}}
-
         <!-- Search -->
+        {{-- @dd(request()) --}}
         <div class="relative flex items-center rounded-xl bg-gray-100 px-3 py-2 lg:inline-flex">
-            <form method="GET" action="#">
+            <form method="GET" action="/">
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
                 <input type="text" name="search" placeholder="Find something" value="{{ request('search') }}"
                     class="bg-transparent text-sm font-semibold placeholder-black">
             </form>
