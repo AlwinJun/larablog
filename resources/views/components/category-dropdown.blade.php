@@ -9,7 +9,8 @@
         </x-slot>
 
         {{-- default slot: items --}}
-        <x-dropdown-item href="/" :active="!isset($currentCategory)">All</x-dropdown-item>
+        <x-dropdown-item href="/?{{ http_build_query(request()->except('category')) }}"
+            :active="!isset($currentCategory)">All</x-dropdown-item>
         @foreach ($categories as $category)
             <x-dropdown-item
                 href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
