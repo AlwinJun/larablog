@@ -11,6 +11,7 @@
                             class="{{ $loop->iteration < 3 ? 'col-span-3' : 'col-span-2' }}" />
                     @endforeach
                 </div>
+                {{ $posts->links() }}
             @endif
         @else
             <p class="text-center">No post yet,come back later.</p>
