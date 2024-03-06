@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -19,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('post/{post:slug}', [PostController::class, 'show'])->name('post');
+
+Route::get('/register', [RegisterController::class, 'create']);
