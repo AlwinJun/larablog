@@ -23,6 +23,9 @@ class RegisterController extends Controller
             ])
         );
 
-        return redirect('/');
+        return redirect('/')->with([
+            'status' => 'success',
+            'message' => 'Your account has been created!'
+        ]);
     }
 }
