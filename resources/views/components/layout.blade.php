@@ -19,7 +19,12 @@
             </div>
 
             <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+                @auth
+                    <span class="text-sm font-semibold">Welcome back, {{ ucwords(auth()->user()->name) }}</span>
+                @else
+                    <a href="/register" class="text-sm font-bold uppercase">Register</a>
+                @endauth
+
 
                 <a href="#"
                     class="ml-3 rounded-full bg-blue-500 px-5 py-3 text-xs font-semibold uppercase text-white">
