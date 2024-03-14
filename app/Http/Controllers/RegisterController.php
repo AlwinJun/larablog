@@ -14,7 +14,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        User::create(
+        $user = User::create(
             $request->validate([
                 'name' => 'required|max:255',
                 'username' => 'required|min:4|max:255|unique:users',
@@ -22,6 +22,8 @@ class RegisterController extends Controller
                 'password' => 'required|min:6|max:255'
             ])
         );
+
+        auth()->login($user);
 
         return redirect('/')->with([
             'status' => 'success',
