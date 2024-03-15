@@ -18,11 +18,18 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
+            <div class="mt-8 flex items-center md:mt-0">
                 @auth
-                    <span class="text-sm font-semibold">Welcome back, {{ ucwords(auth()->user()->name) }}</span>
+                    <span class="text-sm">Welcome back, <span
+                            class="text-blue-500">{{ ucwords(auth()->user()->name) }}</span></span>
+
+                    <form action="/logout" method="POST" class="ml-6 text-sm font-semibold">
+                        @csrf
+                        <button type="submit" class="font-semibold">Log Out</button>
+                    </form>
                 @else
                     <a href="/register" class="text-sm font-bold uppercase">Register</a>
+                    <a href="/login" class="ml-6 text-sm font-bold uppercase">Login</a>
                 @endauth
 
 
