@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+main {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+article + article {
+    margin-top: 30px;
+    border-top: 2px solid #666;
+    padding-top: 20px;
+}
+
+article h2 {
+    margin-bottom: 10px;
+}
+
+.category {
+    text-decoration: none;
+}
+
+/* Alpine attribute */
+[x-cloak] {
+    display: none !important;
+}
