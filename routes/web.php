@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Post;
-use App\Models\User;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -25,5 +22,6 @@ Route::get('post/{post:slug}', [PostController::class, 'show'])->name('post');
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::post('logout', [LoginController::class, 'create'])->middleware('guest');
+Route::get('login', [LoginController::class, 'create'])->middleware('guest');
+Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');

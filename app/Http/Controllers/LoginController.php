@@ -12,6 +12,26 @@ class LoginController extends Controller
         return view('login.create');
     }
 
+    public function store(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (!auth()->attempt($credentials)) {
+
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.'
+            ])->withInput(['email']);
+        }
+
+        // Prevent session fixation attacks
+        $request->session()->regenerate();
+
+        return redirect('/')->with(['status' => 'success', 'message' => 'Welcome Back']);
+    }
+
     public function destroy()
     {
         auth()->logout();
