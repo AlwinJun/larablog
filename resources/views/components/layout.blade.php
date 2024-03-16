@@ -20,13 +20,20 @@
 
             <div class="mt-8 flex items-center md:mt-0">
                 @auth
-                    <span class="text-sm">Welcome back, <span
-                            class="text-blue-500">{{ ucwords(auth()->user()->name) }}</span></span>
+                    <div x-data="{ open: false }" class="relative flex items-center gap-1 text-base">Welcome back,
+                        <span class="text-blue-500">{{ ucwords(auth()->user()->name) }}
+                        </span>
+                        <span @click="open = !open"
+                            class="ml-1 cursor-pointer rounded-full border border-blue-500 bg-gray-100 px-2 py-1 text-xs font-bold text-blue-500">v</span>
 
-                    <form action="/logout" method="POST" class="ml-6 text-sm font-semibold">
-                        @csrf
-                        <button type="submit" class="font-semibold">Log Out</button>
-                    </form>
+
+                        <form x-show="open" x-transition x-cloak action="/logout" method="POST"
+                            class="absolute -bottom-11 -right-7 ml-6 text-sm font-semibold">
+                            @csrf
+                            <button type="submit" class="rounded-md bg-gray-100 px-4 py-2 font-semibold shadow-md">Log
+                                Out</button>
+                        </form>
+                    </div>
                 @else
                     <a href="/register" class="text-sm font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-sm font-bold uppercase">Login</a>
