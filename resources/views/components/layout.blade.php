@@ -19,6 +19,7 @@
             </div>
 
             <div class="mt-8 flex items-center md:mt-0">
+                {{-- Show only if user is login --}}
                 @auth
                     <div x-data="{ open: false }" class="relative flex items-center gap-1 text-base">Welcome back,
                         <span class="text-blue-500">{{ ucwords(auth()->user()->name) }}
@@ -34,11 +35,15 @@
                                 Out</button>
                         </form>
                     </div>
+                @elseif (request()->route()->uri === 'register')
+                    <a href="/login" class="ml-6 text-sm font-bold uppercase">Login</a>
+                @elseif (request()->route()->uri === 'login')
+                    <a href="/register" class="text-sm font-bold uppercase">Register</a>
                 @else
+                    {{-- Show when user is guest and in the homepage --}}
                     <a href="/register" class="text-sm font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-sm font-bold uppercase">Login</a>
                 @endauth
-
 
                 <a href="#"
                     class="ml-3 rounded-full bg-blue-500 px-5 py-3 text-xs font-semibold uppercase text-white">
