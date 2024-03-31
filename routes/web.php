@@ -24,7 +24,7 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('post/{post:slug}', [PostController::class, 'show'])->name('post');
 Route::post('post/{post:slug}/comments', [PostCommentController::class, 'store']);
 
-Route::post('newsletter', [NewsLetterController::class]);
+Route::post('newsletter', NewsLetterController::class);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
