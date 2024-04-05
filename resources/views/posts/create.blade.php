@@ -1,6 +1,6 @@
 <x-layout>
     <section class="mx-auto space-y-6" style="width: 650px">
-        <form action="/admin/posts" method="post" class="panel-border mt-10 space-y-4 pb-0">
+        <form action="/admin/posts" method="post" class="panel-border mt-10 space-y-4 pb-0" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="title" class="mb-1 block text-sm font-semibold leading-6 text-gray-900">Title</label>
@@ -12,6 +12,18 @@
                     <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
+
+
+            <div>
+                <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    for="thumbnail">Thumbnail</label>
+                <input id="thumbnail" name="thumbnail" type="file"
+                    class="mb-5 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-white dark:text-gray-400 dark:placeholder-gray-400">
+                @error('thumbnail')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
 
             <div>
                 <label for="exerpt" class="mb-1 block text-sm font-semibold leading-6 text-gray-900">Exerpt</label>
