@@ -7,16 +7,11 @@
             </div>
             <textarea name="body" class="overflow-au h-16 w-full resize-none rounded-xl focus:h-24"
                 placeholder="Share your thoughts" required></textarea>
-            @error('body')
-                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-            @enderror
+
+            <x-form.error name="body" />
         </div>
 
-        <div class="mb-2 flex justify-end">
-            <button type="submit"
-                class="rounded-full bg-blue-500 px-4 py-2 text-xs font-semibold uppercase text-white">Comment
-            </button>
-        </div>
+        <x-form.button>Comment</x-form.button>
     </form>
 @else
     <div>
