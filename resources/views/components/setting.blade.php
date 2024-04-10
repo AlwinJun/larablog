@@ -6,11 +6,11 @@
     </h1>
 
     <div class="flex">
-        <aside class="w-52">
+        <aside class="w-52 flex-shrink-0">
             <h4 class="mb-4 text-lg font-semibold">Links</h4>
             <ul class="space-y-1 [&>*:not(:last-child)]:border-b [&>*]:pb-2">
                 <li>
-                    <a href="/admin/dashboard" class="{{ active_view('admin/dashboard') ? 'text-blue-500' : '' }}">
+                    <a href="/admin/post" class="{{ active_view('admin/post') ? 'text-blue-500' : '' }}">
                         Dashboard
                     </a>
                 </li>
@@ -21,8 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/posts/create"
-                        class="{{ active_view('admin/posts/create') ? 'text-blue-500' : '' }}">
+                    <a href="/admin/post/create" class="{{ active_view('admin/post/create') ? 'text-blue-500' : '' }}">
                         New Post
                     </a>
                 </li>

@@ -1,7 +1,7 @@
 @props(['category'])
 
 <div class="space-x-2">
-    <a href="/categories/{{ $category->slug }}"
-        class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
+    <a href="/?categories={{ $category->slug }}"
+        class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold uppercase text-blue-300"
         style="font-size: 10px">{{ $category->name }}</a>
 </div>
