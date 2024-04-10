@@ -1,6 +1,6 @@
 <x-layout>
-    <x-setting heading="publish new post">
-        <form action="/admin/posts" method="post" class="panel-border space-y-4 pb-0" enctype="multipart/form-data">
+    <x-setting heading="manage post">
+        <form action="/admin/post" method="post" class="panel-border space-y-4 pb-0" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title" />
             <x-form.input name="thumbnail" type="file" />
