@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -33,5 +34,9 @@ Route::get('login', [LoginController::class, 'create'])->middleware('guest');
 Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
 
-Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
-Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
+Route::get('admin/post', [AdminPostController::class, 'index'])->middleware('admin');
+Route::post('admin/post', [AdminPostController::class, 'store'])->middleware('admin');
+Route::get('admin/post/create', [AdminPostController::class, 'create'])->middleware('admin');
+Route::get('admin/post/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
+Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->middleware('admin');
+Route::delete('admin/post/{post}', [AdminPostController::class, 'destroy'])->middleware('admin');
