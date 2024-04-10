@@ -24,13 +24,7 @@ class AdminPostController extends Controller
 
     public function store(Request $request)
     {
-        $attributes = $request->validate([
-            'title' => 'required|unique:posts,title',
-            'thumbnail' => 'required|image|mimes:png,jpg,jpeg,svg',
-            'exerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
+        $attributes = $this->validatePost();
 
         $attributes['user_id'] = auth()->id();
         $attributes['slug'] = Str::slug($attributes['title']);
@@ -49,13 +43,8 @@ class AdminPostController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        $attributes = $request->validate([
-            'title' => ['required', Rule::unique('posts', 'title')->ignore($post->id)],
-            'thumbnail' => 'image|mimes:png,jpg,jpeg,svg',
-            'exerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
+
+        $attributes = $this->validatePost($post);
 
         $attributes['slug'] = Str::slug($attributes['title']);
 
@@ -74,6 +63,21 @@ class AdminPostController extends Controller
         $post->delete();
 
         return back()->with(['status' => 'danger', 'message' => 'Post deleted']);
+    }
+
+    private function validatePost(?Post $post = null): array
+    {
+        // this methods paran can be optional
+        // if there is no post pass to this method just use a new post instance
+        $post ??= new Post();
+
+        return request()->validate([
+            'title' => ['required', Rule::unique('posts', 'title')->ignore($post)],
+            'thumbnail' => $post?->exist ? ['image', 'mimes:png,jpg,jpeg,svg'] : ['required', 'image', 'mimes:png,jpg,jpeg,svg'],
+            'exerpt' => 'required',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
     }
 
 }

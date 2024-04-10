@@ -23,6 +23,7 @@ class RegisterController extends Controller
             ])
         );
 
+        // Login after account registration
         auth()->login($user);
 
         return redirect('/')->with([
