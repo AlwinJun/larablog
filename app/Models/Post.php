@@ -53,16 +53,16 @@ class Post extends Model
 
     }
 
-    protected function title(): Attribute
-    {
-        // Set multiple fields, create slug based on the title
-        return Attribute::make(
-            set: fn($value) => [
-                'title' => $this->attributes['title'] = $value,
-                'slug' => $this->attributes['slug'] = Str::slug($value)
-            ]
-        );
-    }
+    // protected function title(): Attribute
+    // {
+    //     // Set multiple fields, create slug based on the title
+    //     return Attribute::make(
+    //         set: fn($value) => [
+    //             'title' => $this->attributes['title'] = $value,
+    //             'slug' => $this->attributes['slug'] = Str::slug($value)
+    //         ]
+    //     );
+    // }
 
     public function category()
     {
