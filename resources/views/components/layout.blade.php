@@ -29,12 +29,13 @@
                                 <span
                                     class="ml-1 cursor-pointer rounded-full border border-blue-500 bg-gray-100 px-2 py-1 text-xs font-bold text-blue-500">v</span>
                             </x-slot>
-
-                            <x-dropdown-item href="/admin/post" :active="active_view('admin/post')">Dashboard</x-dropdown-item>
-                            <x-dropdown-item href="/admin/categories/create">New Category</x-dropdown-item>
-                            <x-dropdown-item href="/admin/post/create" :active="active_view('admin/post/create')">
-                                New Post
-                            </x-dropdown-item>
+                            @admin
+                                <x-dropdown-item href="/admin/post" :active="active_view('admin/post')">Dashboard</x-dropdown-item>
+                                <x-dropdown-item href="/admin/categories/create">New Category</x-dropdown-item>
+                                <x-dropdown-item href="/admin/post/create" :active="active_view('admin/post/create')">
+                                    New Post
+                                </x-dropdown-item>
+                            @endadmin
                             <x-dropdown-item>
                                 <form action="/logout" method="POST">
                                     @csrf
