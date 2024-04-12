@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminPostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\NewsLetterController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\PostCommentController;
+use App\Http\Controllers\{
+    AdminPostController,
+    LoginController,
+    NewsLetterController,
+    RegisterController,
+    PostCommentController,
+    PostController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -21,20 +23,25 @@ use App\Http\Controllers\PostCommentController;
 
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
-Route::get('post/{post:slug}', [PostController::class, 'show'])->name('post');
-Route::post('post/{post:slug}/comments', [PostCommentController::class, 'store']);
+Route::middleware('guest')->group(function () {
 
-Route::post('newsletter', NewsLetterController::class);
+    // Prevent showing error when search /register
+    Route::get('register', fn() => redirect('/'));
+    Route::resource('register', RegisterController::class)->only(['create', 'store']);
 
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+    // Prevent showing error when search /login
+    Route::get('login', fn() => redirect('/'));
+    Route::resource('login', LoginController::class)->only(['create', 'store']);
+});
 
-Route::get('login', [LoginController::class, 'create'])->middleware('guest');
-Route::post('login', [LoginController::class, 'store'])->middleware('guest');
-Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
+    Route::post('newsletter', NewsLetterController::class)->name('newsletter');
+    Route::post('post/{post:slug}/comments', [PostCommentController::class, 'store'])->name('post.store.comments');
 
-
-Route::middleware('can:admin')->group(function () {
-    Route::resource('admin/post', AdminPostController::class)->except(['show']);
+    Route::middleware('can:admin')->name('admin.')->group(function () {
+        Route::resource('admin/post', AdminPostController::class)->except('show');
+    });
 });
