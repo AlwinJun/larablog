@@ -7,7 +7,7 @@
             </div>
 
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="/login" method="POST">
+                <form class="space-y-6" action="{{ route('login.store') }}" method="POST">
                     @csrf
                     <x-form.input name="email" type="email" autocomplete="login-email" />
                     <x-form.input name="password" type="password" autocomplete="login-password" />

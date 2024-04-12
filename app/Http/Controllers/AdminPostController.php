@@ -33,7 +33,7 @@ class AdminPostController extends Controller
         Post::create($attributes);
 
         // Redirect to the created post
-        return redirect("/post/{$attributes['slug']}")->with(['status' => 'success', 'message' => 'Post created!']);
+        return redirect()->route('post.show', ['post' => $attributes['slug']])->with(['status' => 'success', 'message' => 'Post created!']);
     }
 
     public function edit(Post $post)
@@ -55,7 +55,7 @@ class AdminPostController extends Controller
         $post->update($attributes);
 
         // Redirect to the created post
-        return redirect("/post/{$attributes['slug']}")->with(['status' => 'success', 'message' => 'Post updated!']);
+        return redirect()->route('post.show', ['post' => $attributes['slug']])->with(['status' => 'success', 'message' => 'Post updated!']);
     }
 
     public function destroy(Post $post)

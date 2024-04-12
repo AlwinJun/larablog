@@ -10,18 +10,19 @@
             <h4 class="mb-4 text-lg font-semibold">Links</h4>
             <ul class="space-y-1 [&>*:not(:last-child)]:border-b [&>*]:pb-2">
                 <li>
-                    <a href="/admin/post" class="{{ active_view('admin/post') ? 'text-blue-500' : '' }}">
+                    <a href="{{ route('admin.post.index') }}"
+                        class="{{ active_view('admin.post.index') ? 'text-blue-500' : '' }}">
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/categories/create"
-                        class="{{ active_view('admin/categories/create') ? 'text-blue-500' : '' }}">
+                    <a href="#" class="{{ active_view('#') ? 'text-blue-500' : '' }}">
                         New Category
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/post/create" class="{{ active_view('admin/post/create') ? 'text-blue-500' : '' }}">
+                    <a href="{{ route('admin.post.create') }}"
+                        class="{{ active_view('admin.post.create') ? 'text-blue-500' : '' }}">
                         New Post
                     </a>
                 </li>

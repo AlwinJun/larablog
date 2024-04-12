@@ -13,8 +13,8 @@
     <section class="px-6 py-8">
         <nav class="md:flex md:items-center md:justify-between">
             <div>
-                <a href="/">
-                    <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
+                <a href="{{ route('home') }}">
+                    <p class="text-2xl font-bold uppercase text-gray-500">Lara<span class="text-blue-500">blog</span></p>
                 </a>
             </div>
 
@@ -30,14 +30,16 @@
                                     class="ml-1 cursor-pointer rounded-full border border-blue-500 bg-gray-100 px-2 py-1 text-xs font-bold text-blue-500">v</span>
                             </x-slot>
                             @admin
-                                <x-dropdown-item href="/admin/post" :active="active_view('admin/post')">Dashboard</x-dropdown-item>
-                                <x-dropdown-item href="/admin/categories/create">New Category</x-dropdown-item>
-                                <x-dropdown-item href="/admin/post/create" :active="active_view('admin/post/create')">
+                                <x-dropdown-item href="{{ route('admin.post.index') }}" :active="active_view('admin.post.index')">
+                                    Dashboard
+                                </x-dropdown-item>
+                                <x-dropdown-item href="#">New Category</x-dropdown-item>
+                                <x-dropdown-item href="{{ route('admin.post.create') }}" :active="active_view('admin.post.create')">
                                     New Post
                                 </x-dropdown-item>
                             @endadmin
                             <x-dropdown-item>
-                                <form action="/logout" method="POST">
+                                <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit">
                                         Logout
@@ -46,14 +48,14 @@
                             </x-dropdown-item>
                         </x-dropdown>
                     </div>
-                @elseif (request()->route()->uri === 'register')
-                    <a href="/login" class="ml-6 text-sm font-bold uppercase">Login</a>
-                @elseif (request()->route()->uri === 'login')
-                    <a href="/register" class="text-sm font-bold uppercase">Register</a>
+                @elseif (request()->routeIs('register.create'))
+                    <a href="{{ route('login.create') }}" class="ml-6 text-sm font-bold uppercase">Login</a>
+                @elseif (request()->routeIs('login.create'))
+                    <a href="{{ route('register.create') }}" class="text-sm font-bold uppercase">Register</a>
                 @else
                     {{-- Show when user is guest and in the homepage --}}
-                    <a href="/register" class="text-sm font-bold uppercase">Register</a>
-                    <a href="/login" class="ml-6 text-sm font-bold uppercase">Login</a>
+                    <a href="{{ route('register.create') }}" class="text-sm font-bold uppercase">Register</a>
+                    <a href="{{ route('login.create') }}" class="ml-6 text-sm font-bold uppercase">Login</a>
                 @endauth
 
                 <a href="#subscribed"
@@ -73,7 +75,8 @@
             <div class="mt-10">
                 <div class="relative mx-auto inline-block rounded-full lg:bg-gray-200">
 
-                    <form method="POST" action="/newsletter" class="items-center text-sm lg:flex" id="subscribed">
+                    <form method="POST" action="{{ route('newsletter') }}" class="items-center text-sm lg:flex"
+                        id="subscribed">
                         @csrf
 
                         <div class="flex items-center lg:px-5 lg:py-3">

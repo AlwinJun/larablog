@@ -23,6 +23,6 @@ class NewsLetterController extends Controller
             throw ValidationException::withMessages(['email' => 'Can\'t subscribe this email']);
         }
 
-        return redirect('/')->with(['status' => 'success', 'message' => 'You\'re now a subscriber']);
+        return redirect()->route('home')->with(['status' => 'success', 'message' => 'You\'re now a subscriber']);
     }
 }

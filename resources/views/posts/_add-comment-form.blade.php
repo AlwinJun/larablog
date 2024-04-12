@@ -1,5 +1,5 @@
 @auth
-    <form action="/post/{{ $post->slug }}/comments" method="post" class="panel-border pb-0">
+    <form action="{{ route('post.store.comments', ['post' => $post->slug]) }}" method="post" class="panel-border pb-0">
         @csrf
         <div class="mb-4 flex items-start gap-4 font-semibold">
             <div>
@@ -17,8 +17,8 @@
     <div>
         <hr>
         <p class="mx-auto -mt-3 w-fit bg-white px-3 text-center">
-            <a href="/register" class="text-blue-500">Register</a> or
-            <a href="/login" class="text-blue-500">Login</a> to join discussions!
+            <a href="{{ route('register.create') }}" class="text-blue-500">Register</a> or
+            <a href="{{ route('login.create') }}" class="text-blue-500">Login</a> to join discussions!
         </p>
     </div>
 @endauth

@@ -10,12 +10,12 @@
                                 @foreach ($posts as $post)
                                     <tr>
                                         <td class="whitespace-nowrap px-6 py-4">
-                                            <a href="/post/{{ $post->slug }}"
+                                            <a href="{{ route('post.show', ['post' => $post->slug]) }}"
                                                 class="text-sm text-gray-900">{{ $post->title }}</a>
                                         </td>
                                         <td
-                                            class="flex justify-evenly whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                                            <a href="/admin/post/{{ $post->id }}/edit"
+                                            class="flex justify-evenly gap-x-4 whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                                            <a href="{{ route('admin.post.edit', ['post' => $post->id]) }}"
                                                 class="text-blue-500 hover:text-blue-600">Edit</a>
 
 
@@ -41,7 +41,8 @@
                                                                 </svg>
                                                                 <span class="sr-only">Close modal</span>
                                                             </button>
-                                                            <form action="/admin/post/{{ $post->id }}"
+                                                            <form
+                                                                action="{{ route('admin.post.destroy', ['post' => $post->id]) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')

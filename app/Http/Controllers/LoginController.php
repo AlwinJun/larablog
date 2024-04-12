@@ -29,13 +29,13 @@ class LoginController extends Controller
         // Prevent session fixation attacks
         $request->session()->regenerate();
 
-        return redirect('/')->with(['status' => 'success', 'message' => 'Welcome Back']);
+        return redirect()->route('home')->with(['status' => 'success', 'message' => 'Welcome Back']);
     }
 
     public function destroy()
     {
         auth()->logout();
 
-        return redirect('/')->with(['status' => 'success', 'message' => 'Goodbye']);
+        return redirect()->route('home')->with(['status' => 'success', 'message' => 'Goodbye']);
     }
 }

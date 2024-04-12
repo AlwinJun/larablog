@@ -1,7 +1,7 @@
 <x-layout>
     <x-setting heading="manage post">
-        <form action="/admin/post/{{ $post->id }}" method="post" class="panel-border space-y-4 pb-0"
-            enctype="multipart/form-data">
+        <form action="{{ route('admin.post.update', ['post' => $post->id]) }}" method="post"
+            class="panel-border space-y-4 pb-0" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <x-form.input name="title" :value="old('title', $post->title)" />
