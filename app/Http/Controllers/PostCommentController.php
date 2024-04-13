@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostCommentRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostCommentController extends Controller
 {
-    public function store(Post $post, Request $request)
+    public function store(Post $post, StorePostCommentRequest $request)
     {
-        $request->validate([
-            'body' => 'required'
-        ]);
+        $validated = $request->validated();
 
 
         $post->comments()->create([
             'post_id' => $post->id,
             'user_id' => auth()->id(),
-            'body' => $request->input('body')
+            'body' => $validated['body']
         ]);
 
         return back();

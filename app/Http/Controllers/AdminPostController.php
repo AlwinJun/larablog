@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAdminPostRequest;
+use App\Http\Requests\UpdateAdminPostRequest;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class AdminPostController extends Controller
 {
@@ -22,9 +22,9 @@ class AdminPostController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreAdminPostRequest $request)
     {
-        $attributes = $this->validatePost();
+        $attributes = $request->validated();
 
         $attributes['user_id'] = auth()->id();
         $attributes['slug'] = Str::slug($attributes['title']);
@@ -41,10 +41,10 @@ class AdminPostController extends Controller
         return view('admin.post.edit', ['post' => $post, 'categories' => Category::all()]);
     }
 
-    public function update(Request $request, Post $post)
+    public function update(UpdateAdminPostRequest $request, Post $post)
     {
 
-        $attributes = $this->validatePost($post);
+        $attributes = $request->validated();
 
         $attributes['slug'] = Str::slug($attributes['title']);
 
@@ -64,20 +64,4 @@ class AdminPostController extends Controller
 
         return back()->with(['status' => 'danger', 'message' => 'Post deleted']);
     }
-
-    private function validatePost(?Post $post = null): array
-    {
-        // this methods paran can be optional
-        // if there is no post pass to this method just use a new post instance
-        $post ??= new Post();
-
-        return request()->validate([
-            'title' => ['required', Rule::unique('posts', 'title')->ignore($post)],
-            'thumbnail' => $post?->exist ? ['image', 'mimes:png,jpg,jpeg,svg'] : ['required', 'image', 'mimes:png,jpg,jpeg,svg'],
-            'exerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
-    }
-
 }

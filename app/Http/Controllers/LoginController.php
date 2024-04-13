@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreLoginRequest;
 
 class LoginController extends Controller
 {
@@ -12,12 +12,9 @@ class LoginController extends Controller
         return view('login.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreLoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+        $credentials = $request->validated();
 
         if (!auth()->attempt($credentials)) {
 
